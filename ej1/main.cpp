@@ -62,10 +62,12 @@ int main(){
 
 
     cout<< "----------------------------------SEGUNDO MENU-----------------------------------------\n";
-    //menu 2 
+    //menu 2       
     int eleccion= -1;
     while(eleccion!=0){
         cout<<"¿Que desea leer o cambiar? : "<<endl;
+        
+        cout<<"0- Salir."<<endl;
         cout<<"1- Ver solo la hora"<<endl;
         cout<<"2- Ver solo minutos"<<endl;
         cout<<"3- Ver solo segundos "<<endl;
@@ -75,7 +77,7 @@ int main(){
         cout<<"7- Modificar minutos "<<endl;
         cout<<"8- Modificar segundos "<<endl;
         cout<<"9- Modificar a.m / p.m "<<endl;
-        //cout<<"10- Ver hora en formato de hora 0 a 24 "<< endl;
+        cout<<"10- Ver hora en formato de hora 0 a 24 "<< endl;
         cout<< "Opción: ";
         cin>> eleccion;
 
@@ -96,7 +98,7 @@ int main(){
                 cout<<"El momento del dia es: " <<t.getMomento_dia()<< endl;
                 break;
             case 5:
-                t.mostrar_formato();
+                t.mostrar_formato();                
                 break;
             case 6:
                 nueva_hora= Pedir_horario("modifique hora:",0,23);
@@ -123,8 +125,9 @@ int main(){
                 cout<< "Momento actualizado: ";
                 cout<<nuevo_momento<< endl;
                 break;
-            //case 10:
-
+            case 10:
+                t.mostar_formato_24();
+                break;
 
             default:
                 cout<<" opcion invalida. \n";

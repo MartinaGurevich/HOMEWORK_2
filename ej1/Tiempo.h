@@ -19,6 +19,7 @@ public:
     Tiempo(int h, int m, int s);
     Tiempo(int h, int m, int s, string am_pm);
     void mostrar_formato() ;
+    void mostar_formato_24();
 
     //getters para agarrar la opcion q quiero
     int getHora();
@@ -31,7 +32,6 @@ public:
     void setMin( int m);
     void setSeg(int s);
     void setMomento_dia( string am_pm);
-
 };
 
 int Pedir_horario(string ingresa_tiempo, int max, int min);

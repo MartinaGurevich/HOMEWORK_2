@@ -28,28 +28,42 @@ string Tiempo ::getMomento_dia(){return momento_dia; }
 
 //SETTERS
 void Tiempo::setHora(int h){
-    h=hora;
+    hora= h;
 }
 void Tiempo::setMin(int m){
-    m=min;
+    min= m;
 }
 void Tiempo::setSeg(int s){
-    s=seg;
+    seg=s;
 }
 void Tiempo::setMomento_dia(string am_pm){
-    am_pm=momento_dia;
+    momento_dia= am_pm;
 }
 
+
 void Tiempo::mostrar_formato(){
-    // int mostar_hora= hora % 12 ;//pone la hora tipo 13 es 1  !!!!!!!!!!!!!  PREGUNTAR SI LO DE HORA EN FORMATO 24 HS ES PARA LA HORA INDIVIDUAL ... DSP DE PUNTO G
-    // if (mostar_hora == 0) {
-    //     mostar_hora = 12;
-    // } 
-    cout<< setfill('0')<< setw(2)<< hora<< "h, "
+    int mostar_hora= hora % 12 ;//pone la hora tipo 13 es 1  !!!!!!!!!!!!!  PREGUNTAR SI LO DE HORA EN FORMATO 24 HS ES PARA LA HORA INDIVIDUAL ... DSP DE PUNTO G
+    cout<< setfill('0')<< setw(2)<< mostar_hora<< "h, "
     <<setw(2)<< min<< "m, "
     <<setw(2)<< seg << "s "
     << momento_dia<< endl;
 
+}
+
+void Tiempo :: mostar_formato_24(){
+    int hora_24= hora;
+
+    if(momento_dia== "p.m." && hora < 12){
+        hora_24 += 12;
+    } else if (momento_dia == "a.m." && hora == 12) // las 12 del mediodida las cuanto como 00 por el motivo que la hora ingresda va de 0 a 23.
+    {
+        hora_24= 0; //12 del mediodia.
+        }
+
+    cout<< setfill('0')<< setw(2)<< hora_24<< "h, "
+    <<setw(2)<< min<< "m, "
+    <<setw(2)<< seg << "s "<< endl;
+    
 }
 
 int Pedir_horario(string ingresa_tiempo,int min, int  max){ //verifico que me pase bien los paraemtros 
