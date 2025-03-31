@@ -1,4 +1,4 @@
-#include "Tiempo.h"
+#include "Tiempo.hpp"
 #include<iostream>
 #include <string>
 #include <iomanip>

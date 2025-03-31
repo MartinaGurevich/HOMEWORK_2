@@ -1,6 +1,6 @@
 #include <iomanip>
 #include <iostream>
-#include "Tiempo.h"
+#include "Tiempo.hpp"
 #include <string>
 
 using namespace std;

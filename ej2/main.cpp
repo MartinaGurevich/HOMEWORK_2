@@ -1,4 +1,4 @@
-#include "Curso.h"
+#include "Curso.hpp"
 #include<iostream>
 #include <string>
 #include <memory>

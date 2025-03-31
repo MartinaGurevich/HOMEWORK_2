@@ -1,4 +1,4 @@
-#include "Curso.h" //incluyo calse estudiante y clase curso
+#include "Curso.hpp" //incluyo calse estudiante y clase curso
 #include <string>
 #include <iostream>
 #include <algorithm>
