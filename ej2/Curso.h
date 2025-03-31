@@ -38,7 +38,7 @@ public:
     void desinscripcion (int legajo);
     void mostar_estudiantes(); //veo cuantso son en el curso 
     void mostar_ordenAlfabetico();
-
+    int cantidadcurso();
     ~Curso();
 };
 

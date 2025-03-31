@@ -60,22 +60,28 @@ void Curso:: desinscripcion(int legajo){
 }
 
 void Curso:: mostar_estudiantes(){
-    int contador=0; // para ver cuantos estudiantes hay
-    int lugares_dispo= estudiantes.size()-contador;
     for (auto e = estudiantes.begin(); e != estudiantes.end(); e++) {
         cout<<"NOMBRE: "<< (*e)->getnombre()<< endl;
         cout<<" --> Legajo: "<< (*e)->getlegajo()<< endl;
         cout<<" --> Promedio: "<< (*e)-> calcular_prom()<< endl;
 
-
-        contador += 1;
-        if (contador> 20){
-            cout<<" Capacidad del curso completa.";
-        }else{
-            cout<<"al curso le quedan"<< lugares_dispo<< "lugares disponibles"<<endl;
-        }
-
     }
+}
+
+int Curso:: cantidadcurso(){
+    int contador=0; // para ver cuantos estudiantes hay
+    int lugares_dispo= estudiantes.size()-contador;
+   
+    for (auto e = estudiantes.begin(); e != estudiantes.end(); e++){  //ver si este for es correcto 
+        contador += 1;
+    }
+
+        if (contador> 20){
+                cout<<" Capacidad del curso completa.";
+        }else{
+            cout<<"al curso le quedan"<< lugares_dispo<< "lugares disponibles"<<endl; //fijarme si devuekvo contador , o hacer funcion contador quev me devuekva un int
+        }
+        return 0; //?
 }
 
 void Curso:: mostar_ordenAlfabetico(){
@@ -90,4 +96,4 @@ void Curso:: mostar_ordenAlfabetico(){
     }
 }
 
-Curso::~Curso() {;}
+Curso::~Curso() {}
