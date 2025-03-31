@@ -12,10 +12,8 @@ int Estudiante:: getlegajo(){return legajo;}
 string Estudiante:: getnombre(){return nombre;}
 
 //agrego datos alumno
-void Estudiante:: agregar_cursos_notas(){
-    int nota;
-    string Materia;
-    Lista_cursos_notas.push_back({Materia,nota});
+void Estudiante:: agregar_cursos_notas(string materia, float nota){
+    Lista_cursos_notas.push_back({materia,nota});
 }
 
 
@@ -28,6 +26,7 @@ float Estudiante:: calcular_prom() const{
     return sumatoria/Lista_cursos_notas.size();
 }
 
+
 //operador < para comparar el nombre 
 bool Estudiante:: operator<(const Estudiante& otro_estudiante) const {
     return nombre< otro_estudiante.nombre;
@@ -38,6 +37,7 @@ ostream & operator << (ostream& os, const Estudiante& e){
     os << "NOMBRE: " <<e.nombre
         <<"--> legajo"<< e.legajo
         <<"--> Promedio: "<<e.calcular_prom();
+    return os;
 }
 
 
@@ -51,7 +51,7 @@ void Curso:: inscripcion(shared_ptr<Estudiante> estudiante_nuevo){
 void Curso:: desinscripcion(int legajo){
     for (auto e = estudiantes.begin(); e != estudiantes.end(); e++) { //e= iterador
         if ((*e)-> getlegajo() == legajo ){
-            cout<< "Estudiante" << (*e)-> getnombre()<< "eliminado/a. \n";
+            cout<< "Estudiante -" << (*e)-> getnombre()<< " - eliminado/a. \n";
             estudiantes.erase(e);
             
             break;
@@ -59,8 +59,13 @@ void Curso:: desinscripcion(int legajo){
     }
 }
 
-void Curso:: mostar_estudiantes(){
-    for (auto e = estudiantes.begin(); e != estudiantes.end(); e++) {
+void Curso:: mostrar_estudiantes(){
+    if (estudiantes.empty()){
+        cout<<"no hay estudiantes"<< endl;
+        return;
+    }
+    cout<<"LISTA DE ESTUDIANTES: \n"<< endl;
+    for (auto e = estudiantes.begin(); e != estudiantes.end(); ++e) {
         cout<<"NOMBRE: "<< (*e)->getnombre()<< endl;
         cout<<" --> Legajo: "<< (*e)->getlegajo()<< endl;
         cout<<" --> Promedio: "<< (*e)-> calcular_prom()<< endl;
@@ -68,18 +73,27 @@ void Curso:: mostar_estudiantes(){
     }
 }
 
+shared_ptr<Estudiante> Curso:: buscar_estudiante(int legajo){
+    for(auto& e: estudiantes){
+        if (e-> getlegajo()== legajo){
+            //cout<<"el estudinate esta en el curso.\n";
+            return e; //aca ya me lo corta 
+        }
+    }
+    return nullptr;
+}
+
 int Curso:: cantidadcurso(){
-    int contador=0; // para ver cuantos estudiantes hay
-    int lugares_dispo= estudiantes.size()-contador;
+    int contador=1; // para ver cuantos estudiantes hay
    
     for (auto e = estudiantes.begin(); e != estudiantes.end(); e++){  //ver si este for es correcto 
         contador += 1;
     }
 
         if (contador> 20){
-                cout<<" Capacidad del curso completa.";
+                cout<<" Capacidad del curso completa.\n";
         }else{
-            cout<<"al curso le quedan"<< lugares_dispo<< "lugares disponibles"<<endl; //fijarme si devuekvo contador , o hacer funcion contador quev me devuekva un int
+            cout<<"Todavia hay lugares disponibles en el curso."<<endl; //fijarme si devuekvo contador , o hacer funcion contador quev me devuekva un int
         }
         return 0; //?
 }
@@ -92,7 +106,9 @@ void Curso:: mostar_ordenAlfabetico(){
     });
     
     for (const auto& est: copia_lista_estudiantes){
-        cout<< *est<< endl;
+        if(est){
+            cout<< *est<< endl;
+        }
     }
 }
 

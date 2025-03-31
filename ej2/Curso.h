@@ -10,7 +10,7 @@ class Estudiante
 private:
     string nombre;
     int legajo; 
-    vector<pair<string,float>> Lista_cursos_notas;
+    vector<pair<string,float>> Lista_cursos_notas; //lista de cursos con su nota final
     
 public:
     
@@ -19,7 +19,7 @@ public:
     string getnombre();
     int getlegajo();
 
-    void agregar_cursos_notas();
+    void agregar_cursos_notas(string materia, float nota);
     float calcular_prom() const; //prom de todas las materias
     bool operator< (const Estudiante& otro_estudiante) const;
 
@@ -36,9 +36,11 @@ public:
     Curso(Estudiante);
     void inscripcion(shared_ptr<Estudiante> estudiante_nuevo); //agrego o saco estudiante
     void desinscripcion (int legajo);
-    void mostar_estudiantes(); //veo cuantso son en el curso 
+    void mostrar_estudiantes(); 
+    shared_ptr <Estudiante> buscar_estudiante(int legajo);
     void mostar_ordenAlfabetico();
     int cantidadcurso();
+
     ~Curso();
 };
 

@@ -8,23 +8,25 @@ using namespace std;
 
 int main(){
     int opcion=-1; 
+    Curso curso;
 
     while(opcion!=0){
         cout<<"MENU DE OPCIONES:"<<endl;
         cout<<"¿Que desea hacer? : "<<endl;
         cout<<"0-Salir."<<endl;
         cout<<"1-Inscribir estudiante al curso" <<endl;
-        cout<<"2-Desinscribir estudiante al curso" <<endl;
-        cout<<"3-Ver si un estudiante esta inscripto (por legajo) "<<endl;
-        cout<<"4-ver si el curso esta completo. "<<endl;
-        cout<<"5- Imprimir nombres alfabeticamente "<<endl;
+        cout<<"2-Ingresar notas del alumno "<< endl;
+        cout<<"3-Desinscribir estudiante al curso" <<endl;
+        cout<<"4-Ver si un estudiante esta inscripto (por legajo) "<<endl;
+        cout<<"5-ver si el curso esta completo. "<<endl;
+        cout<<"6- Imprimir nombres alfabeticamente "<<endl;
         cout<< "Opción: ";
         cin>> opcion;
 
-        Curso curso;
+  
 
         string nombre, materia;
-        int promedio, legajo;
+        int promedio, legajo, nota;
 
         switch (opcion){
 
@@ -44,11 +46,42 @@ int main(){
                 curso.inscripcion(nuevo_estudiante_ptr);
 
                 //muestro lista de como queda con el nuevo 
-                curso.mostar_estudiantes(); //aca igual, quieor q me muestre toda la lista
+                curso.mostrar_estudiantes(); //aca igual, quieor q me muestre toda la lista
                 break;
             }
 
             case 2:{
+
+                cout<< "Ingrese legajo del alumno: ";
+
+                cin>> legajo;
+                cin.ignore();
+
+                auto estudiante= curso.buscar_estudiante(legajo);
+                if (estudiante== nullptr){
+                    cout<<"estudiante no encontrado." << endl;
+                    break;
+                }
+
+
+                cout<< "Ingrese materia: ";
+                cin.ignore();
+                getline(cin,materia);
+            
+                cout<< "Ingrese nota de la materia: ";
+                cin>> nota;
+
+                estudiante-> agregar_cursos_notas(materia, nota);
+
+                cout<<"------------notas cargadas exitosamente------------------ \n";
+
+                curso.mostrar_estudiantes();
+                break;
+
+            }
+
+
+            case 3:{
                 cout<< "A quien desea desinscribir del curso ?:";
                 cin.ignore();
                 getline(cin,nombre);
@@ -58,10 +91,35 @@ int main(){
 
                 //borro estudante
                 curso.desinscripcion(legajo);
-                curso.mostar_estudiantes(); //ver porque me muestra el ultimo nada mas 
+                curso.mostrar_estudiantes(); //ver porque me muestra el ultimo nada mas 
 
                 break;
             }
+
+            case 4:
+            {
+
+                cout<< "Ingrese legajo del alumno: ";
+                cin>> legajo;
+
+                auto estudiante= curso.buscar_estudiante(legajo);
+
+                if(estudiante != nullptr){
+                    cout<<"el estudiante << "<< estudiante->getnombre()<< ">> pertenece al curso.\n";
+                }else{
+                    cout<< "el estudiante no pertenece al curso\n.";
+                }
+                break;
+            }
+            case 5:{
+                curso.cantidadcurso();
+                break;
+            }
+            case 6:{
+                curso.mostar_ordenAlfabetico();
+                break;
+            }
+
 
             default:
                 break;
