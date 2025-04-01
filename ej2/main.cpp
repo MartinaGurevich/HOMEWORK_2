@@ -31,6 +31,7 @@ int main(){
         switch (opcion){
 
             case 0:
+                cout<<"saliendo..."<< endl;
                 break;
             case 1:{
                 cout<< "A quien desea inscribir al curso ?:";
