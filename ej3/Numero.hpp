@@ -54,9 +54,11 @@ public:
 class Complejo: public Numero
 {
 private:
-    int valor_complejo;
+    float parte_real;
+    float parte_imaginaria;
+
 public:
-    Complejo(int valor_complejo);
+    Complejo(float real, float imaginario);
     
     
     unique_ptr<Numero> suma(const Numero& otro_num) override;
@@ -67,6 +69,11 @@ public:
     
     ~Complejo() override;
 };
+
+
+//funcion para imprimir 
+
+void imprimir_operaciones(const unique_ptr<Numero>& a,const unique_ptr<Numero>& b);
 
 
 
