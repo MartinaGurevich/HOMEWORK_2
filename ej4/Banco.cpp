@@ -5,14 +5,17 @@
 using namespace std;
 
 //deposito en cuenta bancaria
-CuentaBancaria:: CuentaBancaria(double balance_inicial, string titular): balance(balance_inicial), titularCuenta(titular) {}
-void CuentaBancaria:: depositar(double dinero_ingresado){
-    balance+= dinero_ingresado;
-}
+CuentaBancaria:: CuentaBancaria(double balance_inicial, string titular): balance(balance_inicial), titularCuenta(titular) {} //tengoq ue dejar esto sino me tira eeorr 
+//void CuentaBancaria:: depositar(double dinero_ingresado){
+   
 
 //constructor caja ed ahorrod
 Cajadeahorro::Cajadeahorro(double dinero_dispo, string titular): CuentaBancaria(dinero_dispo, titular) {}
 
+//ingreso dinero en  caja de ahorro 
+void Cajadeahorro:: depositar(double dinero_ingresado){
+     balance+= dinero_ingresado;
+}
 double Cajadeahorro:: retirar( double monto_retirar){
     
 
@@ -51,6 +54,11 @@ void Cajadeahorro:: mostrar_info(){
 //constructor 
 CuentaCorriente:: CuentaCorriente (double balance_inicial, string titular, Cajadeahorro* caja)
 : CuentaBancaria(balance_inicial,titular), caja_de_ahorro(caja) {}
+
+//ingreso deinero en cuegta corriente
+void CuentaCorriente:: depositar(double dinero_ingresado){
+    balance+= dinero_ingresado;
+}
 
 void CuentaCorriente:: mostrar_info(){
 

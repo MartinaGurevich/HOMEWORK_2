@@ -27,7 +27,9 @@ class Cajadeahorro : public CuentaBancaria
 private:
     int contador_mostrar=0;
 public:
+    
     Cajadeahorro(double dinero_dispo, string titular);
+    void depositar(double dinero); //
     double retirar(double monto) override;
     void mostrar_info() override; //aca se hace el decuento
 
@@ -40,8 +42,11 @@ private:
     Cajadeahorro* caja_de_ahorro; //caja de ahorro asociada 
 public:
 
+    
     CuentaCorriente(double balance_inicial, string titular, Cajadeahorro* caja);
     
+    void depositar(double dinero_ingresado);
+
     double retirar(double dinero) override;
 
     void mostrar_info() override;

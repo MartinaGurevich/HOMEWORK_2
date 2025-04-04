@@ -5,6 +5,8 @@
 #include <vector>
 
 using namespace std; 
+//guarfdarme materia y estudiante y crear curso antes q 
+string curso[]; //por estudiante hay una lista de cursos. 
 
 int main(){
     int opcion=-1; 
@@ -14,7 +16,7 @@ int main(){
         cout<<"MENU DE OPCIONES:"<<endl;
         cout<<"¿Que desea hacer? : "<<endl;
         cout<<"0-Salir."<<endl;
-        cout<<"1-Inscribir estudiante al curso" <<endl;
+        cout<<"1-Inscribir estudiante a un  curso" <<endl; //opcion a que curso quiere iknsrcbir ,
         cout<<"2-Ingresar notas del alumno "<< endl;
         cout<<"3-Desinscribir estudiante al curso" <<endl;
         cout<<"4-Ver si un estudiante esta inscripto (por legajo) "<<endl;
@@ -46,6 +48,8 @@ int main(){
                 auto nuevo_estudiante_ptr = make_shared<Estudiante> (nombre, legajo);
                 curso.inscripcion(nuevo_estudiante_ptr);
 
+                // PONER A QUE VURSO DESEA INDRBIRLO. 
+
                 //muestro lista de como queda con el nuevo 
                 curso.mostrar_estudiantes(); //aca igual, quieor q me muestre toda la lista
                 break;
@@ -58,6 +62,8 @@ int main(){
                 cin>> legajo;
                 cin.ignore();
 
+
+
                 auto estudiante= curso.buscar_estudiante(legajo);
                 if (estudiante== nullptr){
                     cout<<"estudiante no encontrado." << endl;
@@ -65,7 +71,7 @@ int main(){
                 }
 
 
-                cout<< "Ingrese materia: ";
+                cout<< "Ingrese materia: "; //
                 cin.ignore();
                 getline(cin,materia);
             

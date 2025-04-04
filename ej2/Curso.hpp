@@ -18,7 +18,7 @@ public:
     
     string getnombre();
     int getlegajo();
-
+    void crear_curso(vector<string>);//crear curso, que pueda agregar un curso cada vez que lo inscribo 
     void agregar_cursos_notas(string materia, float nota);
     float calcular_prom() const; //prom de todas las materias
     bool operator< (const Estudiante& otro_estudiante) const;

@@ -11,6 +11,12 @@ Estudiante:: Estudiante(string nombre, int legajo): nombre(nombre), legajo(legaj
 int Estudiante:: getlegajo(){return legajo;}
 string Estudiante:: getnombre(){return nombre;}
 
+//creo el curso para el alumno 
+void Estudiante::crear_curso(vector<string>){ //
+    
+
+}
+
 //agrego datos alumno
 void Estudiante:: agregar_cursos_notas(string materia, float nota){
     Lista_cursos_notas.push_back({materia,nota});
