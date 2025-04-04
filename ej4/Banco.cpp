@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//deposito en cuenta bancaria
+//INSTANCIO cuenta bancaria
 CuentaBancaria:: CuentaBancaria(double balance_inicial, string titular): balance(balance_inicial), titularCuenta(titular) {} //tengoq ue dejar esto sino me tira eeorr 
 //void CuentaBancaria:: depositar(double dinero_ingresado){
    

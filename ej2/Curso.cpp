@@ -12,8 +12,9 @@ int Estudiante:: getlegajo(){return legajo;}
 string Estudiante:: getnombre(){return nombre;}
 
 //creo el curso para el alumno 
-void Estudiante::crear_curso(vector<string>){ //
-    
+void Estudiante::crear_curso(int legajo){ //
+   int nombre_materia;
+    vector<string> materia= // fijarse como hacer, yo quiero que cada estudiante tenga su lista de cursos, antes de inscribirlo debe haber una instancia de cracion de curso patra que el est se pueda inscrubir 
 
 }
 

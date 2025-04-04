@@ -6,7 +6,7 @@
 
 using namespace std; 
 //guarfdarme materia y estudiante y crear curso antes q 
-string curso[]; //por estudiante hay una lista de cursos. 
+//string curso[]; //por estudiante hay una lista de cursos. 
 
 int main(){
     int opcion=-1; 
@@ -48,7 +48,8 @@ int main(){
                 auto nuevo_estudiante_ptr = make_shared<Estudiante> (nombre, legajo);
                 curso.inscripcion(nuevo_estudiante_ptr);
 
-                // PONER A QUE VURSO DESEA INDRBIRLO. 
+                cout<<"A que curso lo desea inscribir?: " ; //ESTOOOOO
+                cin>> curso; //FIJARESE STOOOOO
 
                 //muestro lista de como queda con el nuevo 
                 curso.mostrar_estudiantes(); //aca igual, quieor q me muestre toda la lista
