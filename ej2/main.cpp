@@ -1,34 +1,39 @@
 #include "Curso.hpp"
 #include<iostream>
-#include <string>
 #include <memory>
 #include <vector>
 
 using namespace std; 
-//guarfdarme materia y estudiante y crear curso antes q 
-//string curso[]; //por estudiante hay una lista de cursos. 
+
 
 int main(){
+    
+    vector<shared_ptr<Curso>> cursos; //lista de cursos por est
+    vector<shared_ptr<Estudiante>> estudiantes;
+
     int opcion=-1; 
-    Curso curso;
+  
 
     while(opcion!=0){
         cout<<"MENU DE OPCIONES:"<<endl;
         cout<<"¿Que desea hacer? : "<<endl;
         cout<<"0-Salir."<<endl;
-        cout<<"1-Inscribir estudiante a un  curso" <<endl; //opcion a que curso quiere iknsrcbir ,
-        cout<<"2-Ingresar notas del alumno "<< endl;
-        cout<<"3-Desinscribir estudiante al curso" <<endl;
-        cout<<"4-Ver si un estudiante esta inscripto (por legajo) "<<endl;
-        cout<<"5-ver si el curso esta completo. "<<endl;
-        cout<<"6- Imprimir nombres alfabeticamente "<<endl;
+        cout<<"1-Crear nuevo curso."<< endl;
+        cout<<"2-Inscribir estudiante" <<endl; //opcion a que curso quiere iknsrcbir ,
+        cout<<"3-Desinscribir estudiante" <<endl;
+        cout<<"4-Cargar nota del estudiante "<< endl;
+        cout<<"5-Ver si un estudiante esta inscripto (por legajo) "<<endl;
+        cout<<"6-ver si el curso esta completo. "<<endl;
+        cout<<"7- Imprimir nombres alfabeticamente "<<endl;
         cout<< "Opción: ";
         cin>> opcion;
+        cin.ignore();
 
   
 
         string nombre, materia;
-        int promedio, legajo, nota;
+        int legajo;
+        float nota;
 
         switch (opcion){
 
@@ -36,101 +41,139 @@ int main(){
                 cout<<"saliendo..."<< endl;
                 break;
             case 1:{
-                cout<< "A quien desea inscribir al curso ?:";
-                cin.ignore();
-                getline(cin,nombre); // el nombre puede tener espacios
-                
-                cout<< "Ingrese el legajo de "<<nombre<<":";
-                cin >> legajo;
-
-                //creo estudiante con shared ptr
-
-                auto nuevo_estudiante_ptr = make_shared<Estudiante> (nombre, legajo);
-                curso.inscripcion(nuevo_estudiante_ptr);
-
-                cout<<"A que curso lo desea inscribir?: " ; //ESTOOOOO
-                cin>> curso; //FIJARESE STOOOOO
-
-                //muestro lista de como queda con el nuevo 
-                curso.mostrar_estudiantes(); //aca igual, quieor q me muestre toda la lista
-                break;
-            }
-
-            case 2:{
-
-                cout<< "Ingrese legajo del alumno: ";
-
-                cin>> legajo;
-                cin.ignore();
-
-
-
-                auto estudiante= curso.buscar_estudiante(legajo);
-                if (estudiante== nullptr){
-                    cout<<"estudiante no encontrado." << endl;
-                    break;
-                }
-
-
-                cout<< "Ingrese materia: "; //
-                cin.ignore();
-                getline(cin,materia);
-            
-                cout<< "Ingrese nota de la materia: ";
-                cin>> nota;
-
-                estudiante-> agregar_cursos_notas(materia, nota);
-
-                cout<<"------------notas cargadas exitosamente------------------ \n";
-
-                curso.mostrar_estudiantes();
-                break;
-
+                cout<< "Nombre del curso: ";
+                getline(cin, materia);
+                cursos.push_back(make_shared<Curso>(materia));
+                cout<<"Curso creado: " <<materia<< endl;
+                break; 
             }
 
 
-            case 3:{
-                cout<< "A quien desea desinscribir del curso ?:";
-                cin.ignore();
+            case 2:{ //inscribo alumno
+
+                cout<<"Nombre del alumno:";
                 getline(cin,nombre);
+                cout<<"Legajo : ";
+                cin>> legajo; cin.ignore();
 
-                cout<< "Ingrese el legajo de "<<nombre<<":";
-                cin >> legajo;
+                shared_ptr<Estudiante> est= nullptr;
+                for (auto& e: estudiantes){
+                    if(e-> getlegajo()== legajo){
+                        est= e;
+                        break;
+                    }
+                }
 
-                //borro estudante
-                curso.desinscripcion(legajo);
-                curso.mostrar_estudiantes(); //ver porque me muestra el ultimo nada mas 
+                if (!est){
+                    est= make_shared<Estudiante> (nombre, legajo);
+                    estudiantes.push_back(est);
+                }
 
-                break;
-            }
+                cout<<"¿En que curso desea inscribirlo?:";
+                getline(cin, materia);
 
-            case 4:
-            {
+                bool curso_encontrado= false;
 
-                cout<< "Ingrese legajo del alumno: ";
-                cin>> legajo;
-
-                auto estudiante= curso.buscar_estudiante(legajo);
-
-                if(estudiante != nullptr){
-                    cout<<"el estudiante << "<< estudiante->getnombre()<< ">> pertenece al curso.\n";
-                }else{
-                    cout<< "el estudiante no pertenece al curso\n.";
+                for(auto& c: cursos){
+                    if(c ->get_nombre_mat()== materia){
+                        c-> inscripcion(est);
+                        curso_encontrado=true; 
+                        break;
+                    }
+                }
+                if(!curso_encontrado){
+                    cout<<"Curso no encontrado. Creelo antes de la inscripcion. \n";
+                    
                 }
                 break;
             }
+
+
+
+            case 3:{ //desinscribir est
+
+                cout<< "Ingrese el legajo:";
+                cin >> legajo; cin.ignore();
+                
+                cout<<"Nombre del curso: ";
+                getline(cin, materia);
+
+                for(auto& c: cursos){
+                    if(c ->get_nombre_mat()== materia) {
+                        c-> desinscripcion(legajo);
+                        break;
+                    }
+                }
+                break;
+            }
+
+            case 4: {//cargo nota
+                cout<< "legajo del estudiante:";
+                cin >> legajo; cin.ignore();
+                cout<<"Nombre del curso: ";
+                getline(cin, materia);
+                cout<< "Nota final del curso: ";
+                cin >> nota;
+
+                
+                for(auto& est: estudiantes){
+                    if(est ->getlegajo()== legajo){
+                        est-> agregar_cursos_notas(materia, nota);
+                        cout<<"Nota actualizada"<<endl;
+                        break;
+                    }
+                }
+                break;
+            }
+        
             case 5:{
-                curso.cantidadcurso();
+                cout<<"Nombre del curso:";
+                getline(cin, materia);
+
+                for(auto& c: cursos){
+                    if(c ->get_nombre_mat()== materia){
+                        c-> mostrar_estudiantes();
+                        break;
+                    }
+                }
                 break;
             }
             case 6:{
-                curso.mostar_ordenAlfabetico();
+                cout<<"Nombre del curso:";
+                getline(cin, materia);
+
+                for(auto& c: cursos){
+                    if(c-> get_nombre_mat()== materia){
+                        if(c->cantidadcurso())
+                            cout<<"curso completo. \n";
+                        else
+                            cout<< "curso con vacantes. \n";
+                        
+                        break;
+                    }
+                }
                 break;
             }
 
+            case 7:{
+                cout<<"Nombre del curso";
+                getline(cin,materia);
+                
+                for(auto& c: cursos){
+                    if(c ->get_nombre_mat()== materia){
+                        c-> mostrar_ordenAlfabetico();
+                        break;
+                    }
+                }
+                break;
+
+            }
 
             default:
-                break;
+            cout<< "Opcion invalida. \n";
+     
             }
         }
+
+        return 0;
 }

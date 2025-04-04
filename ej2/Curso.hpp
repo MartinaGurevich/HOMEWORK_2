@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include<iostream>
 #include <memory> //uso shared ptr
 using namespace std;
 
@@ -18,9 +19,9 @@ public:
     
     string getnombre();
     int getlegajo();
-    void crear_curso(int legajo);//crear curso, que pueda agregar un curso cada vez que lo inscribo 
+
     void agregar_cursos_notas(string materia, float nota);
-    float calcular_prom() const; //prom de todas las materias
+    float calcular_prom() const; //prom de todas las materias, lo uso para inscribir con nota -1(defaualt)
     bool operator< (const Estudiante& otro_estudiante) const;
 
     friend ostream& operator<< (ostream& os, const Estudiante& e); //para que la otra calse pued entrar a nombre de esta
@@ -30,16 +31,20 @@ public:
 class Curso
 {
 private:
+    string nombre_curso;
     vector<shared_ptr<Estudiante>> estudiantes;
 public:
-    Curso();
-    Curso(Estudiante);
+    Curso(const string& nombre_mat);
+    string get_nombre_mat() const; 
+    //Curso(Estudiante);
     void inscripcion(shared_ptr<Estudiante> estudiante_nuevo); //agrego o saco estudiante
     void desinscripcion (int legajo);
     void mostrar_estudiantes(); 
     shared_ptr <Estudiante> buscar_estudiante(int legajo);
-    void mostar_ordenAlfabetico();
+    void mostrar_ordenAlfabetico();
     int cantidadcurso();
+
+    Curso(const Curso& otro)= default;
 
     ~Curso();
 };
