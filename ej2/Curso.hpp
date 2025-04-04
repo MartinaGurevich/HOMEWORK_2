@@ -44,7 +44,12 @@ public:
     void mostrar_ordenAlfabetico();
     int cantidadcurso();
 
-    Curso(const Curso& otro)= default;
+    
+    /*Esta es una shallow copy del objeto curso. Se copian los punteros compartidos (shared_ptr) a los estudinates,
+    por lo tanto el curso original y el curso copiado apuntan a los mismos objetos Estudiante en memoria.
+    Uso shared_ptr y permito una shallow copy porque los estuidnates pueden estar inscriptos en 
+    muchas materias.*/
+    Curso(const Curso& otro)= default;//es mi constructor de copia.
 
     ~Curso();
 };
