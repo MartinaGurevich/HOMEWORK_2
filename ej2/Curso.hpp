@@ -15,7 +15,7 @@ private:
     
 public:
     
-    Estudiante(string nombre, int legajo); //contrsuctor / objerto
+    Estudiante(string nombre, int legajo); 
     
     string getnombre();
     int getlegajo();
@@ -24,7 +24,7 @@ public:
     float calcular_prom() const; //prom de todas las materias, lo uso para inscribir con nota -1(defaualt)
     bool operator< (const Estudiante& otro_estudiante) const;
 
-    friend ostream& operator<< (ostream& os, const Estudiante& e); //para que la otra calse pued entrar a nombre de esta
+    friend ostream& operator<< (ostream& os, const Estudiante& e); //para que la otra clase pueda entrar a nombre de est
 };
 
 
@@ -53,6 +53,11 @@ public:
 
     ~Curso();
 };
+
+
+/*RESPUETA  LA PREGUNTA C: 
+la relacion existente entre estudiantes y cursos es de ASOCIACION ya que ambos interactuan sin una fuerte dependencia entre ellos.
+No existe un Ownership. */
 
 
 

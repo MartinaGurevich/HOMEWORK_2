@@ -19,7 +19,7 @@ int main(){
         cout<<"¿Que desea hacer? : "<<endl;
         cout<<"0-Salir."<<endl;
         cout<<"1-Crear nuevo curso."<< endl;
-        cout<<"2-Inscribir estudiante" <<endl; //opcion a que curso quiere iknsrcbir ,
+        cout<<"2-Inscribir estudiante" <<endl; //opcion a que curso quiere incribir
         cout<<"3-Desinscribir estudiante" <<endl;
         cout<<"4-Cargar nota del estudiante "<< endl;
         cout<<"5-Ver si un estudiante esta inscripto (por legajo) "<<endl;

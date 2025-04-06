@@ -1,9 +1,6 @@
 #include "Curso.hpp" //incluyo calse estudiante y clase curso
-//#include <string>
-
-//#include <iostream>
 #include <algorithm>
-//using namespace std;
+
 //constructores estudiante
 
 
@@ -27,13 +24,13 @@ void Estudiante:: agregar_cursos_notas(string materia, float nota){
 }
 
 
-//calculo prom geberal de cada uno
+//calculo prom general de cada uno
 float Estudiante:: calcular_prom() const{
     float sumatoria=0;
     for (const auto& par: Lista_cursos_notas){
         sumatoria += par.second; //accedo a la nota
 }
-   // return sumatoria/Lista_cursos_notas.size();
+   
    return Lista_cursos_notas.empty() ? 0: sumatoria/Lista_cursos_notas.size();
 }
 
@@ -87,10 +84,6 @@ void Curso:: mostrar_estudiantes(){
     }
 
     cout<<"LISTA DE ESTUDIANTES: \n"<< endl;
-    // for (auto e = estudiantes.begin(); e != estudiantes.end(); ++e) {
-    //     cout<<"NOMBRE: "<< (*e)->getnombre()<< endl;
-    //     cout<<" --> Legajo: "<< (*e)->getlegajo()<< endl;
-    //     cout<<" --> Promedio: "<< (*e)-> calcular_prom()<< endl;
 
     for(const auto& est : estudiantes){
         if(est){
@@ -102,7 +95,6 @@ void Curso:: mostrar_estudiantes(){
 shared_ptr<Estudiante> Curso:: buscar_estudiante(int legajo){
     for(auto& e: estudiantes){
         if (e-> getlegajo()== legajo){
-            //cout<<"el estudinate esta en el curso.\n";
             return e; //aca ya me lo corta 
         }
     }
@@ -117,9 +109,9 @@ int Curso:: cantidadcurso(){
     if (cantidad >= 20){
             cout<<" Capacidad del curso completa.\n";
     }else{
-        cout<<"Todavia hay "<< (20- cantidad)<<" lugares disponibles en el curso."<<endl; //fijarme si devuekvo contador , o hacer funcion contador quev me devuekva un int
+        cout<<"Todavia hay "<< (20- cantidad)<<" lugares disponibles en el curso."<<endl; 
     }
-    return cantidad; //?
+    return cantidad; 
 }
 
 void Curso:: mostrar_ordenAlfabetico(){

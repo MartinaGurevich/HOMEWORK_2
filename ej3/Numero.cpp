@@ -17,7 +17,7 @@ Entero:: Entero(int v): valor(v){}
 Entero::~Entero()= default;
 
 unique_ptr<Numero> Entero::suma(const Numero& otro_num){
-    const Entero* ent= dynamic_cast<const Entero*> (&otro_num); //conviento otro_num en tipo entero
+    const Entero* ent= dynamic_cast<const Entero*> (&otro_num); //convierto otro_num en tipo entero
     if(!ent){
         throw invalid_argument("el numero no es un int.");
     }
@@ -36,7 +36,7 @@ unique_ptr<Numero> Entero:: multiplicacion(const Numero& otro_num){
     if(!ent){
         throw invalid_argument("el numero no es un int.");
     }
-    return make_unique<Entero>(this-> valor * ent->valor);  //CORREGIR ESTO 
+    return make_unique<Entero>(this-> valor * ent->valor);  
 }
 
 
@@ -50,7 +50,7 @@ Real:: Real(float v): valor_real(v){}
 Real::~Real()= default;
 
 unique_ptr<Numero> Real::suma(const Numero& otro_num){
-    const Real* re= dynamic_cast<const Real*> (&otro_num); //conviento otro_num en tipo entero
+    const Real* re= dynamic_cast<const Real*> (&otro_num); //conviento otro_num en tipo real
     if(!re){
         throw invalid_argument("el numero no es un real.");
     }
@@ -58,7 +58,7 @@ unique_ptr<Numero> Real::suma(const Numero& otro_num){
 }
 
 unique_ptr<Numero> Real::resta(const Numero& otro_num){
-    const Real* re= dynamic_cast<const Real*> (&otro_num); //conviento otro_num en tipo entero
+    const Real* re= dynamic_cast<const Real*> (&otro_num); //conviento otro_num en tipo real
     if(!re){
         throw invalid_argument("el numero no es un real.");
     }
@@ -66,7 +66,7 @@ unique_ptr<Numero> Real::resta(const Numero& otro_num){
 }
 
 unique_ptr<Numero> Real::multiplicacion(const Numero& otro_num){
-    const Real* re= dynamic_cast<const Real*> (&otro_num); //conviento otro_num en tipo entero
+    const Real* re= dynamic_cast<const Real*> (&otro_num); //conviento otro_num en tipo real
     if(!re){
         throw invalid_argument("el numero no es un real.");
     }
@@ -82,7 +82,7 @@ Complejo:: Complejo(float r, float i): parte_real(r), parte_imaginaria(i){}
 Complejo::~Complejo()= default;
 
 unique_ptr<Numero> Complejo::suma(const Numero& otro_num){
-    const Complejo* comp= dynamic_cast<const Complejo*> (&otro_num); //conviento otro_num en tipo entero
+    const Complejo* comp= dynamic_cast<const Complejo*> (&otro_num); //conviento otro_num en tipo complejo
     if(!comp){
         throw invalid_argument("el numero no es un complejo.");
     }
@@ -92,7 +92,7 @@ unique_ptr<Numero> Complejo::suma(const Numero& otro_num){
 }
 
 unique_ptr<Numero> Complejo::resta(const Numero& otro_num){
-    const Complejo* comp= dynamic_cast<const Complejo*> (&otro_num); //conviento otro_num en tipo entero
+    const Complejo* comp= dynamic_cast<const Complejo*> (&otro_num); //conviento otro_num en tipo complejo
     if(!comp){
         throw invalid_argument("el numero no es un complejo.");
     }
@@ -102,7 +102,7 @@ unique_ptr<Numero> Complejo::resta(const Numero& otro_num){
 }
 
 unique_ptr<Numero> Complejo::multiplicacion(const Numero& otro_num){
-    const Complejo* comp= dynamic_cast<const Complejo*> (&otro_num); //conviento otro_num en tipo entero
+    const Complejo* comp= dynamic_cast<const Complejo*> (&otro_num); //conviento otro_num en tipo complejo
     if(!comp){
         throw invalid_argument("el numero no es un complejo.");
     }
