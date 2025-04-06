@@ -56,8 +56,8 @@ public:
 
 
 /*RESPUETA  LA PREGUNTA C: 
-la relacion existente entre estudiantes y cursos es de ASOCIACION ya que ambos interactuan sin una fuerte dependencia entre ellos.
-No existe un Ownership. */
+la relacion existente entre estudiantes y cursos es de AGREGACION ya que ambos interactuan y tienen una relacion con las partes, pero sin una dependencia total.
+ */
 
 
 
